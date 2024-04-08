@@ -1,0 +1,217 @@
+---
+title: Untitled
+format:
+  modern2-cv-pdf: default
+author: Sarath Nallamudi
+cvfont: raleway #texlive fonts like raleway,fetamont,gillius,comfortaa
+cvcolor: 
+  main: B83B5E
+  accent: 6A2C70
+jobtitle: Risk Strategy || Analytics || AI & ML || Consumer & Commercial
+sidebar:
+  image: sarath.jpg
+  bullets:
+    - Atlanta, GA
+    - US Citizen
+    - sarathn@gmail.com
+    - 678-315-1194
+  sections: 
+    - name: Skills
+      items:
+        - text: Credit, Fraud & Collections Strategy
+          exp:
+            text: "6 yrs."
+            num: 0.6
+        - text: Loss forecast/reserve
+          exp:
+            text: "5 yrs."
+            num: 0.5
+        - text: Data Analysis
+          exp: 
+            text: "9 yrs."
+            num: 0.9
+        - text: Statistical & Machine Learning models
+          exp:
+            text: "5 yrs."
+            num: 0.5
+        - text: Financial Modeling
+          exp:
+            text: "6 yrs."
+            num: 0.6
+        - text: Time Series Modeling
+          exp:
+            text: "3 yrs."
+            num: 0.3
+        - text: Deep Learning
+          exp:
+            text: "3 yrs."
+            num: 0.3 
+    - name: Languages 
+      items:  
+        - text: R
+          exp: 
+            text: "8+ yrs."
+            num: 0.8
+        - text: Python
+          exp: 
+            text: "3 yrs."
+            num: 0.3
+        - text: SAS
+          exp:
+            text: "2 yrs."
+            num: 0.2
+        - text: SQL
+          exp: 
+            text: "15 yrs."
+            num: 1
+        - text: Julia
+          exp: 
+            text: "1 yr."
+            num: 0.1
+        - text: Rmarkdown
+          exp: 
+            text: "6 yrs."
+            num: 0.6
+        - text: Quarto
+          exp: 
+            text: "1 yr."
+            num: 0.1
+        - text: Web Scraping
+          exp: 
+            text: "1 yrs."
+            num: 0.1
+        
+    - name: Tools
+      items:
+        - XGBoost
+        - Tensorflow
+        - Pytorch
+        - Equifax Ignite
+        - Moody's Impairment Studio
+        - Spark
+        - Snowflake
+        - Databricks
+        - R Shiny
+        - Streamlit
+        - Tableau
+        - Power BI
+        - Git
+        - RStudio
+        - VS Code
+        - Pycharm
+        - Terminal 
+    - name: Education
+      items:
+        - text: "MBA"
+          inst: "Emory University"
+          time: "08/2016 - 05/2018"
+          details: "Finance & Strategy"
+        - text: "MS in EE"
+          inst: "Texas Tech University"
+          time: "01/2000 - 12/2002"
+          details: "Electrical Engineering"
+    - name: Certifications
+      items:
+        - Credit risk modeling in R
+        - Python & Machine Learning for Financial Analysis
+    - name: Contact
+      items:
+        - icon: map-marker
+          text: Atlanta, GA
+        - icon: phone
+          text: "+1 678-315-1194"
+        - icon: envelope
+          text: sarathn@gmail.com
+        - icon: home
+          text: sarath.nallamudi.com
+          href: https://sarath.nallamudi.com
+        - icon: github
+          text: Github
+          href: https://github.com/snallamudi
+        - icon: twitter
+          text: Twitter
+          href: https://twitter.com/snallamudi    
+execute: 
+  echo: false
+---
+
+```{r}
+#| label: cvevents
+cvevents <- function(tbl, when, what, where, descr) {
+
+    command_start <- "\\cvevent"
+    tbl[[where]] <- gsub("\n", " \newline ", tbl[[where]])
+    tbl[[what]] <- gsub("\n", " \newline ", tbl[[what]])
+
+    res <- paste0(
+        command_start, "{", tbl[[when]], "}", 
+        "{", tbl[[what]], "}",
+        "{", tbl[[where]], "}",
+        "{", tbl[[descr]], "}"
+        )
+
+    cat(res, sep = "\n")
+}
+
+
+cvproj <- function(tbl,what,role,items){
+    command_start <- "\\cvproj"
+    res <- paste0(
+        command_start, "{", tbl[[what]], "}",
+        "{", tbl[[role]], "}",
+        "{", sapply(tbl[[items]], function(x)paste0(x,collapse = ", ")), "}"
+    )
+
+    cat(res, sep = "\n\n\n")
+}
+
+
+experience <- tibble::as_tibble(openxlsx::read.xlsx(xlsxFile = "experience.xlsx", sheet = "experience"))
+
+```
+
+# Summary
+
+I am a results driven financial services leader in Risk Strategy and Management space. I have a proven track record of leveraging data to drive strategic insights. My expertise lies in developing and executing innovative solutions to complex business challenges, with a focus on analytics, risk management, and machine learning utilizing various data science tools and technologies
+
+# Experience
+
+```{r}
+#| label: experience
+#| output: asis
+
+
+tibble::as_tibble(openxlsx::read.xlsx(xlsxFile = "experience.xlsx", sheet = "experience")) |>
+  cvevents(when = "dates", what = "role", where = "institution", descr = "details")
+
+
+```
+
+<!-- # Projects -->
+
+<!-- See my [github profile](https://github.com/snallamudi) for a comprehensive list of open source projects. -->
+
+```{r}
+#| label: proj
+#| output: asis
+#| evaluate: false
+
+# tibble::tribble(
+#     ~what, ~role, ~items,
+#     "R packages", "Creator and Maintainer", c("edgebundle", "graphlayouts", "levelnet", "netrankr", "netUtils", "networkdata", "PSAWR", "roughnet", "roughsf", "rtoot", "Rtumblr", "signnet", "snahelper", "webbotparseR", "webtrackR"),
+#     "R packages", "Contributor", c("backbone", "ggraph", "multigraphr", "netropy", "rang", "rgraph6"),
+#     "Quarto extensions", "Creator and Maintainer",
+#     c("Academicons (shortcodes)", "Blackboard (revealjs theme)", "sketchy (html theme)", "share buttons (filter)", "nutshell (filter)", "quartocities (website template)", "quartocv (cv templates)"),
+#     "soccerverse.com (football analytics website)", "Creator and Maintainer",
+#     c(
+#         "Manual and automated gathering of football results around the world",
+#         "Harmonizing data (e.g. club names and managers)",
+#         "Implementation of ranking algorithms",
+#         "Predicting of league tables and matchforecasting",
+#         "Uses R, JavaScript, HTML, and CSS",
+#         "around 1000 visitors/month"
+#     )
+# ) |>
+#     cvproj(what = "what", role = "role", items = "items")
+
+```
